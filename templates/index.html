@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AIしりとり</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AIしりとり</h1>
+      <p class="subtitle">Gemini と対戦しよう</p>
+    </header>
+
+    <section class="panel">
+      <form action="/start" method="post" class="start-form">
+        <label for="difficulty">難易度</label>
+        <select id="difficulty" name="difficulty">
+          <option value="easy" {{ 'selected' if difficulty == 'easy' else '' }}>やさしい</option>
+          <option value="normal" {{ 'selected' if difficulty == 'normal' or not difficulty else '' }}>ふつう</option>
+          <option value="hard" {{ 'selected' if difficulty == 'hard' else '' }}>むずかしい</option>
+        </select>
+        <button type="submit" class="btn primary">ゲーム開始</button>
+      </form>
+
+      <form id="resetForm" action="/reset" method="post">
+        <button type="submit" class="btn ghost">リセット</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="status">
+        {% if status == 'playing' %}
+          <span class="badge playing">対戦中</span>
+        {% elif status == 'ended' %}
+          <span class="badge ended">終了</span>
+        {% else %}
+          <span class="badge idle">待機中</span>
+        {% endif %}
+      </div>
+
+      <div id="expectInfo" class="expect"></div>
+
+      <div class="input-row">
+        <input id="wordInput" type="text" placeholder="ことばを入力 (ひらがな)" autocomplete="off" />
+        <button id="sendBtn" class="btn primary">送信</button>
+      </div>
+      <div id="error" class="error" role="alert" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <h2>履歴</h2>
+      <ul id="history" class="history">
+        {% for h in history %}
+          <li class="{{ 'you' if h.player == 'you' else 'ai' }}">
+            <span class="chip {{ 'me' if h.player == 'you' else 'ai' }}">{{ 'あなた' if h.player == 'you' else 'AI' }}</span>
+            <span class="word">{{ h.word }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <footer>
+      <small>Powered by Flask & Gemini</small>
+    </footer>
+  </div>
+
+  <script>
+    const statusState = "{{ status }}";
+  </script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
