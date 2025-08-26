@@ -1,0 +1,42 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-family: 'Noto Sans JP', system-ui, -apple-system, sans-serif; color: #222; background: #faf7f2; }
+
+.container { max-width: 880px; margin: 32px auto; padding: 0 16px; }
+header { text-align: center; margin-bottom: 16px; }
+header h1 { margin: 0; font-weight: 700; letter-spacing: 0.04em; }
+.subtitle { color: #666; margin-top: 4px; }
+
+.panel { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+
+.start-form { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+label { font-size: 14px; color: #333; }
+select { padding: 8px 10px; border-radius: 8px; border: 1px solid #ddd; background: #fff; }
+
+.btn { cursor: pointer; border: none; border-radius: 10px; padding: 10px 14px; font-weight: 700; }
+.btn.primary { background: #2b8a3e; color: #fff; }
+.btn.primary:hover { background: #257934; }
+.btn.ghost { background: transparent; border: 1px solid #bbb; color: #333; }
+.btn.ghost:hover { background: #f4f4f4; }
+
+.status { margin-bottom: 8px; }
+.badge { padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+.badge.playing { background: #e6f7ed; color: #2b8a3e; }
+.badge.ended { background: #ffecec; color: #c92a2a; }
+.badge.idle { background: #eef3ff; color: #1c4ed8; }
+
+.expect { margin: 8px 0 12px; font-weight: 700; color: #444; }
+
+.input-row { display: flex; gap: 8px; }
+.input-row input { flex: 1; padding: 12px 14px; border: 1px solid #ddd; border-radius: 10px; font-size: 16px; }
+.input-row input:focus { outline: 3px solid #dff2e5; border-color: #2b8a3e; }
+
+.error { color: #c92a2a; min-height: 20px; margin-top: 8px; }
+
+.history { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.history li { display: flex; align-items: center; gap: 8px; }
+.chip { font-size: 12px; padding: 4px 8px; border-radius: 999px; }
+.chip.me { background: #e6f7ed; color: #2b8a3e; }
+.chip.ai { background: #eef3ff; color: #1c4ed8; }
+.word { font-weight: 700; letter-spacing: 0.04em; }
+
+footer { text-align: center; color: #777; margin-top: 24px; }
